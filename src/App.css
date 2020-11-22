@@ -2,3 +2,12 @@ div.Loading-page {
     margin: auto;
     width: fit-content;
 }
+
+button {
+    display: flex;
+    margin: 30pt auto;
+}
+
+.card {
+    margin: 1% !important;
+}

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import { fetchData } from './api';
-import loadingGif from './images/loadingGif.gif'
+import { Grid, Typography, Card, CardContent, CircularProgress, LinearProgress, StylesProvider } from '@material-ui/core';
+import  CircularProgressWithLabel  from './components/CircularProgressWithLabel';
 
 function App() {
 
@@ -27,27 +28,56 @@ function App() {
       }, 1000));
     else
       clearInterval(updateInterval);
+    // eslint-disable-next-line  
   },[paused]);
 
   if (loading)
     return (
       <div className="Loading-page">
-        <img src={loadingGif} alt="loading"/>
+        <CircularProgress></CircularProgress>
       </div>
     );  
 
   return (
     <div className="App">
       <header className="App-header">
-             
-          CPU: {data.cpu}% <br/>
-          Total Memory: {data.memory.total}MB <br/>
-          Free Memory: {data.memory.free}MB <br/>
-          Used Memory: {data.memory.used}MB <br/>
-          <button id="start" onClick={() => setPaused(false)} >Start</button>
-          <button id="stop" onClick={() => setPaused(true)} >Stop</button>
-
       </header>
+
+      <body>
+        <Grid container justify="center" spacing={3}>
+          <Grid item component={Card} className="card">
+            <CardContent>
+              <Typography>CPU</Typography>
+              <CircularProgressWithLabel value={data.cpu}></CircularProgressWithLabel>
+            </CardContent>
+          </Grid>
+          <Grid item component={Card} className="card">
+            <CardContent>
+              <Typography>Memory</Typography>
+              <Typography style={{fontSize: 15}}>
+                Total: {data.memory.total}MB <br/>
+                Free: {data.memory.free}MB <br/>
+                Used: {data.memory.used}MB <br/>
+              </Typography>
+              <LinearProgress variant="determinate" value={data.memory.computed}></LinearProgress>
+            </CardContent>
+          </Grid>
+          <Grid item component={Card} className="card">
+            <CardContent>
+              <Typography>Processes</Typography>
+            </CardContent>
+          </Grid>
+          <Grid item component={Card} className="card">
+            <CardContent>
+              <Typography>Network</Typography>
+            </CardContent>
+          </Grid>
+        </Grid>
+
+        <button id="start" onClick={() => setPaused(false)} >Start</button>
+        <button id="stop" onClick={() => setPaused(true)} >Stop</button>
+
+      </body>
     </div>
   );
 }
