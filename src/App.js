@@ -45,7 +45,7 @@ function App() {
       <Router>
 
         <Header onChange={()=> setPaused(!paused)} paused={paused}></Header>
-        {console.log(paused)}
+        
         <Route path="/cpu" render={(props) => <Cpu {...props} cpu={data.cpu} />}/>
         <Route path="/memory" render={(props) => <Memory {...props} memory={data.memory} />}/>
         <Route path="/processes" render={(props) => <Processes {...props} processes={data.processes} />}/>
