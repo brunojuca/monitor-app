@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import './App.css';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { Typography, CircularProgress, LinearProgress } from '@material-ui/core';
 import { fetchData } from './api';
-import { Grid, Typography, Card, CardContent, CircularProgress, LinearProgress, StylesProvider } from '@material-ui/core';
-import  CircularProgressWithLabel  from './components/CircularProgressWithLabel';
+import { CircularProgressWithLabel, Header }  from './components';
+import { Cpu , Memory, Network, Processes, Loading } from './pages';
+import './App.css';
 
 function App() {
 
@@ -33,51 +35,24 @@ function App() {
 
   if (loading)
     return (
-      <div className="Loading-page">
-        <CircularProgress></CircularProgress>
+      <div className="Loading">
+          <CircularProgress></CircularProgress>
       </div>
-    );  
+    );
 
-  return (
+  return ( 
     <div className="App">
-      <header className="App-header">
-      </header>
+      <Router>
 
-      <body>
-        <Grid container justify="center" spacing={3}>
-          <Grid item component={Card} className="card">
-            <CardContent>
-              <Typography>CPU</Typography>
-              <CircularProgressWithLabel value={data.cpu}></CircularProgressWithLabel>
-            </CardContent>
-          </Grid>
-          <Grid item component={Card} className="card">
-            <CardContent>
-              <Typography>Memory</Typography>
-              <Typography style={{fontSize: 15}}>
-                Total: {data.memory.total}MB <br/>
-                Free: {data.memory.free}MB <br/>
-                Used: {data.memory.used}MB <br/>
-              </Typography>
-              <LinearProgress variant="determinate" value={data.memory.computed}></LinearProgress>
-            </CardContent>
-          </Grid>
-          <Grid item component={Card} className="card">
-            <CardContent>
-              <Typography>Processes</Typography>
-            </CardContent>
-          </Grid>
-          <Grid item component={Card} className="card">
-            <CardContent>
-              <Typography>Network</Typography>
-            </CardContent>
-          </Grid>
-        </Grid>
+        <Header onChange={()=> setPaused(!paused)} paused={paused}></Header>
+        {console.log(paused)}
+        <Route path="/cpu" render={(props) => <Cpu {...props} cpu={data.cpu} />}/>
+        <Route path="/memory" render={(props) => <Memory {...props} memory={data.memory} />}/>
+        <Route path="/processes" render={(props) => <Processes {...props} processes={data.processes} />}/>
+        <Route path="/network" render={(props) => <Network {...props} network={data.network} />}/>
 
-        <button id="start" onClick={() => setPaused(false)} >Start</button>
-        <button id="stop" onClick={() => setPaused(true)} >Stop</button>
+      </Router>
 
-      </body>
     </div>
   );
 }

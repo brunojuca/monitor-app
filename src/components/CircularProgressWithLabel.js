@@ -1,7 +1,7 @@
 import {CircularProgress, Typography, Box} from '@material-ui/core';
 
 
-function CircularProgressWithLabel(props) {
+export default function CircularProgressWithLabel(props) {
     return (
       <Box position="relative" display="inline-flex">
         <CircularProgress size={100} variant="static" {...props} />
@@ -22,5 +22,3 @@ function CircularProgressWithLabel(props) {
       </Box>
     );
   }
-
-export default CircularProgressWithLabel;

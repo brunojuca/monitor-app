@@ -1,13 +1,5 @@
-div.Loading-page {
-    margin: auto;
-    width: fit-content;
-}
-
-button {
+.Loading {
     display: flex;
-    margin: 30pt auto;
-}
-
-.card {
-    margin: 1% !important;
+    justify-content: center;
+    align-items: center;
 }
