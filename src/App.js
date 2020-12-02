@@ -20,39 +20,37 @@ function App() {
   const [paused, setPaused] = useState(false);
   
   useEffect(() => {
-    if (!paused)
-      setUpdateInterval(setInterval(() => {
-        const fetchAPI = async () => {
-          setData(await fetchData());
-          setLoading(false);
-        }
-        fetchAPI();
+    if (!paused) {
+      setLoading(true);
+      setUpdateInterval(setInterval(async () => {
+        setData(await fetchData());
+        loading && setLoading(false);
       }, 1000));
+    }
+      
     else
       clearInterval(updateInterval);
     // eslint-disable-next-line  
   },[paused]);
 
-  if (loading)
-    return (
-      <div className="Loading">
-          <CircularProgress></CircularProgress>
-      </div>
-    );
 
   return ( 
     <div className="App">
       <Router>
 
-        <Header onChange={()=> setPaused(!paused)} paused={paused}></Header>
+        <Header onChange={()=> setPaused(!paused)} paused={paused}>Monitor App</Header>
         
-        <Route path="/cpu" render={(props) => <Cpu {...props} cpu={data.cpu} />}/>
-        <Route path="/memory" render={(props) => <Memory {...props} memory={data.memory} />}/>
-        <Route path="/processes" render={(props) => <Processes {...props} processes={data.processes} />}/>
-        <Route path="/network" render={(props) => <Network {...props} network={data.network} />}/>
-
+        {loading ? (
+          <Loading />
+        ) : (
+          <div className="Content">
+            <Route path="/cpu" render={(props) => <Cpu {...props} cpu={data.cpu} />}/>
+            <Route path="/memory" render={(props) => <Memory {...props} memory={data.memory} />}/>
+            <Route path="/processes" render={(props) => <Processes {...props} processes={data.processes} />}/>
+            <Route path="/network" render={(props) => <Network {...props} network={data.network} />}/>
+          </div>
+        )}        
       </Router>
-
     </div>
   );
 }

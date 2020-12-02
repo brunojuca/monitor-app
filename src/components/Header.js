@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
               <MenuIcon />
             </IconButton>*/}
             <Typography variant="h6" className={classes.title}>
-              Monitor App
+              {props.children}
             </Typography>
 
             <Link to="/cpu" className={classes.links}> 

@@ -1,0 +1,6 @@
+.Loading {
+    display: flex;
+    height: 80%;
+    justify-content: center;
+    align-items: center;
+}
