@@ -1,12 +1,23 @@
 import React from 'react';
+import { useMonitorData } from '../../contexts/monitorContext';
+import { Loading } from '../';
 
-function Cpu({cpu}) {
-    return ( 
-      <div className="Cpu">
-          <h1>CPU Page</h1>
-          <p>{cpu}</p>
-      </div>
-    );
-  }
+function Cpu() {
   
-  export default Cpu;
+  const { data, loading } = useMonitorData();
+
+  return (
+    <div>
+      {loading ? (
+        <Loading />
+      ) : (
+        <div className="Cpu">
+          <h1>CPU Page</h1>
+          <p>{data.cpu}</p>
+        </div>
+      )}  
+    </div>  
+  );
+}
+
+export default Cpu;

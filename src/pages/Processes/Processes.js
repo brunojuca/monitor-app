@@ -1,15 +1,27 @@
 import React from 'react';
+import { useMonitorData } from '../../contexts/monitorContext';
+import { Loading } from '../';
 
+function Processes() {
 
-function Processes({processes}) {
-    return ( 
-      <div className="Processes">
+  const { data, loading } = useMonitorData();
+  
+  return (
+    <div>
+      {loading ? (
+        <Loading />
+      ) : (
+        <div className="Processes">
           <h1>Processes Page</h1>
           <ul>
-            {processes.map((item,i) => <li key={i}>{item.name}</li>)}
+            {data.processes.map((item,i) => <li key={i}>{item.name}</li>)}
           </ul>
-      </div>
-    );
-  }
-  
-  export default Processes;
+        </div>
+      )}  
+    </div>      
+    
+    
+  );
+}
+
+export default Processes;

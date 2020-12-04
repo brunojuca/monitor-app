@@ -1,14 +1,26 @@
 import React from 'react';
+import { useMonitorData } from '../../contexts/monitorContext';
+import { Loading } from '../';
 
-function Network({network}) {
-    return ( 
-      <div className="Network">
+function Network() {
+
+  const { data, loading } = useMonitorData();
+
+  return (
+    <div>
+      {loading ? (
+        <Loading />
+      ) : (
+        <div className="Network">
           <h1>Network Page</h1>
           <ul>
-            {network.map((item,i) => <li key={i}>{item.interface}</li>)}
+            {data.network.map((item,i) => <li key={i}>{item.interface}</li>)}
           </ul>
-      </div>
-    );
-  }
-  
-  export default Network;
+        </div>
+      )}  
+    </div>      
+    
+  );
+}
+
+export default Network;

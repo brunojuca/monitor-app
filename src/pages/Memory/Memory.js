@@ -1,14 +1,26 @@
 import React from 'react';
+import { useMonitorData } from '../../contexts/monitorContext';
+import { Loading } from '../';
 
-function Memory({ memory: { total, used, free, computed } }) {
-    return ( 
-      <div className="Memory">
+function Memory() {
+
+  const { data, loading } = useMonitorData();
+
+  return (
+    <div>
+      {loading ? (
+        <Loading />
+      ) : (
+        <div className="Memory">
           <h1>Memory Page</h1>
-          <p>Total: {total}</p>
-          <p>Used: {used}</p>
-          <p>Free: {free}</p>
-      </div>
-    );
-  }
-  
-  export default Memory;
+          <p>Total: {data.memory.total}</p>
+          <p>Used: {data.memory.used}</p>
+          <p>Free: {data.memory.free}</p>
+        </div>
+      )}  
+    </div>  
+    
+  );
+}
+
+export default Memory;

@@ -5,18 +5,9 @@ import './Loading.css';
 function Loading() {
     return ( 
     <div className="Loading">
-        <CircularProgress></CircularProgress>
+        <CircularProgress size={100}></CircularProgress>
     </div>
     );
   }
   
   export default Loading;
-
-
-
-
-
-
-
-
-

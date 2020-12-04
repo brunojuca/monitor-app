@@ -6,7 +6,7 @@ const url = 'http://localhost:3000/api';
 
 export const fetchData = async () => {
     try {
-        //await waitTimeout(10000);
+        //await waitTimeout(2000);
         const { data } = await axios.get(url);
 
         return data;
@@ -14,3 +14,7 @@ export const fetchData = async () => {
         console.log(error);
     }
   }
+
+export function getData() {
+    
+}

@@ -1,6 +1,7 @@
 import {AppBar, Typography, Toolbar, IconButton, Button, ButtonGroup, makeStyles} from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import { Link } from 'react-router-dom';
+import { useMonitorData } from '../contexts/monitorContext'
 
 
 
@@ -17,11 +18,17 @@ const useStyles = makeStyles((theme) => ({
     links: {
         color: "inherit",
         marginRight: theme.spacing(5),
+    },
+    home: {
+        color: "inherit",
+        marginRight: "auto",
     }
   }));
   
   export default function Header(props) {
     const classes = useStyles();
+    const { paused, setPaused } = useMonitorData();
+
     return (
       <div className={classes.root}>
         <AppBar position="static">
@@ -29,10 +36,14 @@ const useStyles = makeStyles((theme) => ({
             {/*<IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
               <MenuIcon />
             </IconButton>*/}
-            <Typography variant="h6" className={classes.title}>
-              {props.children}
-            </Typography>
-
+            <Link to="/" className={classes.home}> 
+                <Button color="inherit" size="large">
+                  <Typography variant="h6" className={classes.title}>
+                    {props.children}
+                  </Typography>
+                </Button>
+            </Link>
+          
             <Link to="/cpu" className={classes.links}> 
                 <Button color="inherit" size="large">CPU</Button>
             </Link>
@@ -47,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
             </Link>
 
             <ButtonGroup variant="contained" size="medium">
-                <Button onClick={()=> props.onChange()} >{props.paused ? "Start" : "Stop"}</Button>
+                <Button onClick={() => setPaused(!paused)} >{paused ? "Start" : "Stop"}</Button>
             </ButtonGroup>
           </Toolbar>
         </AppBar>
