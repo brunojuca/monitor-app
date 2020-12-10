@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import { Typography, CircularProgress, LinearProgress } from '@material-ui/core';
-import { fetchData } from './api';
 import { CircularProgressWithLabel, Header }  from './components';
-import { Home, Loading, Cpu , Memory, Network, Processes } from './pages';
+import { Home, Cpu , Memory, Network, Processes } from './pages';
 import './App.css';
 import MonitorDataProvider from './contexts/monitorContext'
 

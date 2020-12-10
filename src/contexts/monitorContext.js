@@ -13,21 +13,22 @@ export default function MonitorDataProvider({ children }) {
       });
 
     const [loading, setLoading] = useState(true);
-    const [updateInterval, setUpdateInterval] = useState();
     const [paused, setPaused] = useState(false);
 
     useEffect(() => {
         if (!paused) {
-         setTimeout(async () => {
+          const fetchApi = async ()=> {
             setData(await fetchData());
-            loading && setLoading(false);        
-          }, 0); // Time to wait beyond minimum of 1sec requested by api. 
+            loading && setLoading(false);
+          }
+          fetchApi();
         }
-      },[paused, data, loading]);
+      },[paused, data]);
 
     return (
         <monitorContext.Provider value={{ data, setData, paused, setPaused, loading }}>
             {children}
+            {console.log("render")}
         </monitorContext.Provider>
     );
 }
