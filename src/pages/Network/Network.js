@@ -11,15 +11,15 @@ function Network() {
       {loading ? (
         <Loading />
       ) : (
-        <div className="Network">
-          <h1>Network Page</h1>
-          <ul>
-            {data.network.map((item,i) => <li key={i}>{item.interface}</li>)}
-          </ul>
-        </div>
-      )}  
-    </div>      
-    
+          <div className="Network">
+            <h1>Network Page</h1>
+            <ul>
+              {data.network.map((item, i) => <li key={i}>{item.interface}</li>)}
+            </ul>
+          </div>
+        )}
+    </div>
+
   );
 }
 

@@ -3,7 +3,7 @@ import { useMonitorData } from '../../contexts/monitorContext';
 import { Loading } from '../';
 
 function Cpu() {
-  
+
   const { data, loading } = useMonitorData();
 
   return (
@@ -11,12 +11,12 @@ function Cpu() {
       {loading ? (
         <Loading />
       ) : (
-        <div className="Cpu">
-          <h1>CPU Page</h1>
-          <p>{data.cpu}</p>
-        </div>
-      )}  
-    </div>  
+          <div className="Cpu">
+            <h1>CPU Page</h1>
+            <p>{data.cpu}</p>
+          </div>
+        )}
+    </div>
   );
 }
 

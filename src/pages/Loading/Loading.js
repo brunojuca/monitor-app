@@ -3,11 +3,11 @@ import { CircularProgress } from '@material-ui/core';
 import './Loading.css';
 
 function Loading() {
-    return ( 
+  return (
     <div className="Loading">
-        <CircularProgress size={100}></CircularProgress>
+      <CircularProgress size={100}></CircularProgress>
     </div>
-    );
-  }
-  
-  export default Loading;
+  );
+}
+
+export default Loading;
