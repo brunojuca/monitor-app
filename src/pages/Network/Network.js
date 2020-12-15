@@ -14,7 +14,7 @@ function Network() {
           <div className="Network">
             <h1>Network Page</h1>
             <ul>
-              {data.network.map((item, i) => <li key={i}>{item.interface}</li>)}
+              {data.network.map((item) => <li key={item.interface}>{item.interface}</li>)}
             </ul>
           </div>
         )}

@@ -1,28 +1,17 @@
-import { AppBar, Typography, Toolbar, IconButton, Button, ButtonGroup, makeStyles } from '@material-ui/core';
-import MenuIcon from '@material-ui/icons/Menu';
+import { AppBar, Typography, Toolbar, Button, makeStyles, Switch, FormControlLabel } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { useMonitorData } from '../contexts/monitorContext'
 
-
-
 const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  title: {
-    flexGrow: 1,
-  },
-  links: {
-    color: "inherit",
+  item: {
     marginRight: theme.spacing(5),
   },
   home: {
-    color: "inherit",
     marginRight: "auto",
-  }
+  },
+  title: {
+    textTransform: "none",
+  },
 }));
 
 export default function Header(props) {
@@ -33,33 +22,36 @@ export default function Header(props) {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          {/*<IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-              <MenuIcon />
-            </IconButton>*/}
           <Link to="/" className={classes.home}>
-            <Button color="inherit" size="large">
+            <Button size="large">
               <Typography variant="h6" className={classes.title}>
                 {props.children}
               </Typography>
             </Button>
           </Link>
 
-          <Link to="/cpu" className={classes.links}>
-            <Button color="inherit" size="large">CPU</Button>
+          <Link to="/cpu" className={classes.item}>
+            <Button size="large">CPU</Button>
           </Link>
-          <Link to="/memory" className={classes.links}>
-            <Button color="inherit" size="large">Memory</Button>
+          <Link to="/memory" className={classes.item}>
+            <Button size="large">Memory</Button>
           </Link>
-          <Link to="/processes" className={classes.links}>
-            <Button color="inherit" size="large">Processes</Button>
+          <Link to="/processes" className={classes.item}>
+            <Button size="large">Processes</Button>
           </Link>
-          <Link to="/network" className={classes.links}>
-            <Button color="inherit" size="large">Network</Button>
+          <Link to="/network" className={classes.item}>
+            <Button size="large">Network</Button>
           </Link>
 
-          <ButtonGroup variant="contained" size="medium">
-            <Button onClick={() => setPaused(!paused)} >{paused ? "Start" : "Stop"}</Button>
-          </ButtonGroup>
+          <FormControlLabel
+            className={classes.item}
+            value="top"
+            control={<Switch />}
+            label="Dark Mode"
+            labelPlacement="top"
+          />
+          <Button variant="contained" onClick={() => setPaused(!paused)} >{paused ? "Start" : "Stop"}</Button>
+
         </Toolbar>
       </AppBar>
     </div>
