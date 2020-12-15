@@ -1,11 +1,19 @@
 import React from 'react';
 import { useMonitorData } from '../../contexts/monitorContext';
 import { Loading } from '../';
-import { List, ListItem, ListItemText, Typography, Divider } from '@material-ui/core';
+import { List, ListItem, ListItemText, Typography, Divider, makeStyles } from '@material-ui/core';
+
+const useStyles = makeStyles((theme) => ({
+  title: {
+    margin: theme.spacing(2)
+  }
+}));
+
 
 function Processes() {
 
   const { data, loading } = useMonitorData();
+  const classes = useStyles();
 
   return (
     <div>
@@ -13,7 +21,7 @@ function Processes() {
         <Loading />
       ) : (
           <div className="Processes">
-            <Typography variant="h3" align="center">Processes</Typography>
+            <Typography className={classes.title} variant="h3" align="center">Processes</Typography>
             <List>
               {data.processes.map((item, i) =>
                 <>
