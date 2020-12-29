@@ -16,7 +16,7 @@ function MemoryCard({ children, value }) {
     <Grid item>
       <Card className={classes.root}>
       <Typography className={classes.title} variant="h4">{children}</Typography>
-      <Typography className={classes.value} variant="h6">{value}</Typography>
+      <Typography className={classes.value} variant="h6">{value} MB</Typography>
     </Card>
     </Grid>
   );

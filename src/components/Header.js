@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import { useMonitorData } from '../contexts/monitorContext'
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    marginBottom:theme.spacing(2),
+  },
   item: {
     marginRight: theme.spacing(5),
   },

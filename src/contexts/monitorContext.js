@@ -13,11 +13,13 @@ export default function MonitorDataProvider({ children }) {
 
   const [loading, setLoading] = useState(true);
   const [paused, setPaused] = useState(false);
+  const [cpuArray, setCpuArray] = useState([]);
 
   useEffect(() => {
     if (!paused) {
       const fetchApi = async () => {
         const tempData = await fetchData();
+        setCpuArray([...cpuArray, tempData.cpu]);
         setData({...tempData, processes: tempData.processes.sort((a, b) => b.cpu-a.cpu)});
         loading && setLoading(false);
       }
@@ -27,13 +29,13 @@ export default function MonitorDataProvider({ children }) {
 
 
   return (
-    <monitorContext.Provider value={{ data, setData, paused, setPaused, loading }}>
+    <monitorContext.Provider value={{ data, setData, paused, setPaused, loading, cpuArray }}>
       {children}  
     </monitorContext.Provider>
   );
 }
 
 export function useMonitorData() {
-  const { data, paused, setPaused, loading } = useContext(monitorContext);
-  return { data, paused, setPaused, loading };
+  const { data, paused, setPaused, loading, cpuArray } = useContext(monitorContext);
+  return { data, paused, setPaused, loading, cpuArray };
 }
