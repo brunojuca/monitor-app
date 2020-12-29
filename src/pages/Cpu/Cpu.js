@@ -41,7 +41,7 @@ function Cpu() {
                 datasets: [{
                   data: cpuArray,
                   label: 'CPU Usage',
-                  borderColor: 'blue',
+                  borderColor: '#b71c1c',
                   fill: true,
                 }],
               }}

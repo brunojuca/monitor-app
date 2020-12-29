@@ -8,6 +8,7 @@ const useStyles = makeStyles((theme) => ({
   },
   item: {
     marginRight: theme.spacing(5),
+    color: theme.palette.text.primary,
   },
   home: {
     marginRight: "auto",
@@ -53,7 +54,7 @@ export default function Header(props) {
             label="Dark Mode"
             labelPlacement="top"
           />
-          <Button variant="contained" onClick={() => setPaused(!paused)} >{paused ? "Start" : "Stop"}</Button>
+          <Button color = "secondary" variant="contained" onClick={() => setPaused(!paused)} >{paused ? "Start" : "Stop"}</Button>
 
         </Toolbar>
       </AppBar>

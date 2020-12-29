@@ -1,12 +1,12 @@
 import React from 'react';
 import { Card, Typography, makeStyles, Grid } from '@material-ui/core';
-import { FullscreenExit } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     padding: theme.spacing(3),
     minWidth: 150,
     margin: theme.spacing(),
+    backgroundColor: theme.palette.secondary.main,
   },
   }));
 
