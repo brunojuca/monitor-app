@@ -20,7 +20,11 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Header(props) {
   const classes = useStyles();
-  const { paused, setPaused } = useMonitorData();
+  const { paused, setPaused, darkMode, setDarkmode } = useMonitorData();
+
+  function handleDarkModeSwitch() {
+    setDarkmode(!darkMode);
+  }
 
   return (
     <div className={classes.root}>
@@ -50,7 +54,7 @@ export default function Header(props) {
           <FormControlLabel
             className={classes.item}
             value="top"
-            control={<Switch />}
+            control={<Switch onChange={ handleDarkModeSwitch }/>}
             label="Dark Mode"
             labelPlacement="top"
           />

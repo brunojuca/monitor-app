@@ -14,6 +14,7 @@ export default function MonitorDataProvider({ children }) {
   const [loading, setLoading] = useState(true);
   const [paused, setPaused] = useState(false);
   const [cpuArray, setCpuArray] = useState([]);
+  const [darkMode, setDarkmode] = useState(false);
 
   useEffect(() => {
     if (!paused) {
@@ -29,13 +30,13 @@ export default function MonitorDataProvider({ children }) {
 
 
   return (
-    <monitorContext.Provider value={{ data, setData, paused, setPaused, loading, cpuArray }}>
+    <monitorContext.Provider value={{ data, setData, paused, setPaused, loading, cpuArray, darkMode, setDarkmode }}>
       {children}  
     </monitorContext.Provider>
   );
 }
 
 export function useMonitorData() {
-  const { data, paused, setPaused, loading, cpuArray } = useContext(monitorContext);
-  return { data, paused, setPaused, loading, cpuArray };
+  const { data, paused, setPaused, loading, cpuArray, darkMode, setDarkmode } = useContext(monitorContext);
+  return { data, paused, setPaused, loading, cpuArray, darkMode, setDarkmode };
 }

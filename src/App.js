@@ -5,11 +5,13 @@ import { CircularProgressWithLabel, Header } from './components';
 import { Home, Cpu, Memory, Network, Processes } from './pages';
 import './App.css';
 import MonitorDataProvider from './contexts/monitorContext'
+import { Theme } from './theme/theme'
 
 function App() {
 
   return (
     <MonitorDataProvider>
+      <Theme>
       <div className="App">
         <CssBaseline />
         <Router>
@@ -26,6 +28,7 @@ function App() {
 
         </Router>
       </div>
+      </Theme> 
     </MonitorDataProvider>
   );
 }
