@@ -4,7 +4,7 @@
 
 ### English
 
-The React application relies on the capybara monitor (github.com/capybara-team/capybara-monitor), so as long as it is running (instructions on its github repository) you should be able to start this application with `npm start`.
+The React application relies on the [capybara monitor](github.com/capybara-team/capybara-monitor), so as long as it is running (instructions on its github repository) you should be able to start this application with `npm start`.
 
 Note: Currently you need to allow permission inside capybara-monitor's code to the port where the monitor app is running, this can be done with the code bellow:
 
